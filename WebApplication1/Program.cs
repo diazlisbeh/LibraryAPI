@@ -6,12 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IRestCaller, RestCaller>();
 
-// Add services to the container.
+// services to the container.
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       policy =>
-                      {
+                     {
                           policy.WithOrigins("http://localhost:3000");
                                               
                       });
@@ -33,7 +33,15 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors(MyAllowSpecificOrigins);
+//app.UseCors(MyAllowSpecificOrigins);
+app.UseCors(builder =>
+{
+    builder
+    .WithOrigins("http://localhost:3000")
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader();
+});
 
 app.UseAuthorization();
 

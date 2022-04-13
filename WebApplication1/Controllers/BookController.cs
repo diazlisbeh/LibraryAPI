@@ -4,9 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Callers;
 using WebApplication1.Models;
 
+
 namespace WebApplication1.Controllers
 {
-    [EnableCors("_myAllowSpecificOrigins")]
+    [EnableCors]
     [Route("api/[controller]")]
     [ApiController]
     public class BookController : ControllerBase
